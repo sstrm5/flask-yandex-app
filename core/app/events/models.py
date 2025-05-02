@@ -1,5 +1,5 @@
 from datetime import datetime
-from app.extensions import db
+from core.app.extensions import db
 
 
 class News(db.Model):
