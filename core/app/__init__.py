@@ -1,3 +1,4 @@
+import pathlib
 from flask import Flask
 from flask_login import LoginManager
 from flask_migrate import Migrate
@@ -6,7 +7,7 @@ import os
 
 from sqlalchemy import text
 
-from .events.admin import init_admin
+from .news.admin import init_admin
 
 
 # Инициализация базы данных
@@ -16,7 +17,11 @@ login_manager = LoginManager()
 
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(
+        __name__,
+        template_folder=pathlib.Path("../../templates"),
+        static_folder=pathlib.Path("../../static"),
+    )
     app.config["DEBUG"] = True
     app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 

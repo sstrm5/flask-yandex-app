@@ -6,8 +6,7 @@ from core.app.users.forms.user import LoginForm, RegisterForm
 from core.app.users.models import User
 from core.app import login_manager
 
-template_folder = pathlib.Path("../../templates")
-users_bp = Blueprint("users", __name__, template_folder=template_folder)
+users_bp = Blueprint("users", __name__)
 
 
 @login_manager.user_loader

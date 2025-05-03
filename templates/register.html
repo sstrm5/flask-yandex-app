@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Регистрация</h1>
-<form action="" method="post">
+<form action="" method="post" class="w-25 mx-auto no-border-radius">
     {{ form.hidden_tag() }}
     <p>
         {{ form.email.label }}<br>
@@ -40,7 +40,7 @@
             </p>
         {% endfor %}
     </p>
-    <p>{{ form.submit(type="submit", class="btn btn-primary") }}</p>
+    <p>{{ form.submit(type="submit", class="btn btn-primary blue-color") }}</p>
     {{message}}
 </form>
 {% endblock %}
