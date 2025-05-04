@@ -5,3 +5,18 @@
 .no-border-radius {
     border-radius: 0;
 }
+.news_block{
+  border-radius: 5px;
+  border: 2px solid grey;
+  padding: 20px 25px 20px 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px
+}
+.news_blocks{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center
+
+}
