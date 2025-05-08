@@ -1,8 +1,15 @@
 import datetime
+import enum
 import sqlalchemy
 from core.app.extensions import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+
+
+class UserRole(enum.Enum):
+    user = "user"
+    admin = "admin"
+    moderator = "moderator"
 
 
 class User(db.Model, UserMixin):
@@ -22,6 +29,11 @@ class User(db.Model, UserMixin):
         index=True,
         unique=True,
         nullable=True,
+    )
+    role = db.Column(
+        sqlalchemy.Enum(UserRole),
+        default=UserRole.user,
+        nullable=False,
     )
     hashed_password = sqlalchemy.Column(
         sqlalchemy.String,
