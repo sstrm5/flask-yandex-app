@@ -7,7 +7,7 @@ import os
 
 from sqlalchemy import text
 
-from .news.admin import init_admin
+from core.app.admin import init_admin
 
 
 # Инициализация базы данных
@@ -23,7 +23,9 @@ def create_app():
         static_folder=pathlib.Path("../../static"),
     )
     app.config["DEBUG"] = True
-    app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+    app.config["SECRET_KEY"] = (
+        "SUPER_SECRET_KEY_123HJDBFsdkjfkj23h4l2k3j65hkjsgaldfkjghaswr4564576575643dslkgernt"
+    )
 
     conn_str = f"sqlite:///database.db?check_same_thread=False"
     app.config["SQLALCHEMY_DATABASE_URI"] = conn_str
