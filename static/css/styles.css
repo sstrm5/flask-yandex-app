@@ -20,3 +20,11 @@
     align-items: center
 
 }
+.header_logo{
+    display: flex;
+    flex-direction: row;
+    align-items: center
+}
+.header_logo h5{
+    margin: 0
+}
