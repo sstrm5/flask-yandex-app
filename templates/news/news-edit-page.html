@@ -1,56 +1,67 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <a href="/news/create" class="btn btn-primary mb-3">Добавить</a>
-    <table>
-        <thead>
-            <tr>
-                <th>Заголовок</th>
-                <th>Текст</th>
-                <th>Автор</th>
-                <th>Опубликовано</th>
-                <th>Действия</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for news_item in news %}
-            <tr>
-                <td>{{ news_item.title }}</td>
-                <td>{{ news_item.text }}</td>
-                <td>Автор</td>
-                <td>
-                    <input type="checkbox" name="is_published" 
-                           {% if news_item.is_published %}checked{% endif %}
-                           onchange="updatePublicationStatus({{ news_item.id }}, this.checked)">
-                </td>
-                <td>
-                    <button onclick="location.href='/news/edit/{{ news_item.id }}'">Редактировать</button>
-                    <button onclick="location.href='/news/delete/{{ news_item.id }}'">Удалить</button>
-                </td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+<div class="container">
+    <h1 class="text-center mb-3">Управление новостями</h1>
+    <div class="row">
+        <div class="">
+            <a href="/news/create" class="btn btn-primary mb-3">Добавить новость</a>
+        </div>
+        <div class="" style="overflow: auto">
+            <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Заголовок</th>
+                    <th scope="col">Текст</th>
+                    <th scope="col">Автор</th>
+                    <th scope="col">Опубликовано</th>
+                    <th scope="col">Действия</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for news_item in news %}
+                <tr>
+                    <td>{{ news_item.title }}</td>
+                    <td>{{ news_item.text }}</td>
+                    <td>Автор</td>
+                    <td>
+                        <input type="checkbox" name="is_published"
+                               {% if news_item.is_published %}checked{% endif %}
+                               onchange="updatePublicationStatus({{ news_item.id }}, this.checked)">
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" onclick="location.href='/news/edit/{{ news_item.id }}'">Редактировать</button>
+                        <button class="btn btn-danger" onclick="location.href='/news/delete/{{ news_item.id }}'">Удалить</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+            <script>
+            function updatePublicationStatus(newsId, isPublished) {
+                fetch(`/news/update-status/${newsId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': '{{ csrf_token }}' // Для защиты от CSRF-атак
+                    },
+                    body: JSON.stringify({ is_published: isPublished })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        alert('Ошибка при обновлении статуса публикации.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                    alert('Произошла ошибка при обновлении статуса.');
+                });
+            }
+        </script>
+    
+        </div>
+    </div>
+</div>
 
-    <script>
-        function updatePublicationStatus(newsId, isPublished) {
-            fetch(`/news/update-status/${newsId}`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': '{{ csrf_token }}' // Для защиты от CSRF-атак
-                },
-                body: JSON.stringify({ is_published: isPublished })
-            })
-            .then(response => {
-                if (!response.ok) {
-                    alert('Ошибка при обновлении статуса публикации.');
-                }
-            })
-            .catch(error => {
-                console.error('Ошибка:', error);
-                alert('Произошла ошибка при обновлении статуса.');
-            });
-        }
-    </script>
 {% endblock %}
