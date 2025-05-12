@@ -1,17 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="news-item">
-    
-    <h1>{{ news_item.title }}</h1>
-    {% if news_item.picture %}
-        <img src="{{ url_for('static', filename=news_item.picture) }}" alt="{{ news_item.title }}" class="news_item.image">
-    {% endif %}
-    <p class="news_item-text">{{ news_item.text }}</p>
-    <p class="news_item-author">Автор: {{ news_item.author.name }}</p>
-    <p class="news_item-date">Дата публикации: {{ news_item.created_at.strftime('%d.%m.%Y') }}</p>
-    <div class="">
-        <a href="/news/" class="">Вернуться к новостям</a>
+<div class="container">
+
+    <div class="news-item">
+        
+        <h1 class="text-center">{{ news_item.title }}</h1>
+        {% if news_item.picture %}
+            <img src="{{ url_for('static', filename=news_item.picture) }}" alt="{{ news_item.title }}" class="news_item.image">
+        {% endif %}
+        <p class="news_item-text">{{ news_item.text }}</p>
+        <p class="news_item-author"><span class="fw-bold">Автор:</span> {{ news_item.author.name }}</p>
+        <p class="news_item-date"><span class="fw-bold">Дата публикации:</span> {{ news_item.created_at.strftime('%d.%m.%Y') }}</p>
+        <div class="">
+            <a href="/news/" class="btn btn-primary">Вернуться к новостям</a>
+        </div>
     </div>
 </div>
 {% endblock %}

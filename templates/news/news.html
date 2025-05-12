@@ -1,29 +1,83 @@
 {% extends "base.html" %}
 
 {% block content %}
+<div class="container">
+
     {% if current_user.is_authenticated %}
-        {% if current_user.role.value == "moderator" %}
-            <a href="/news/edit" class="btn btn-primary mb-3">Редактировать</a>
-        {% endif %}
+    {% if current_user.role.value == "moderator" %}
+    <a href="/news/edit" class="btn btn-primary mb-3">Редактировать</a>
     {% endif %}
-    <div class="container">
-        <div class="row">
-    {% for item in news %}
-        <div class="col-sm-4 my-4">
-            <div class="news_block">
-                <div>
-                    <h2>{{ item.title }}</h2>
+    {% endif %}
+    <div class="">
+        <div class="row d-flex justify-content-center">
+            {% for item in news %}
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-6 my-4">
+                    <div class="news_block">
+                        <div>
+                            <h2>{{ item.title }}</h2>
+                        </div>
+                        <div>
+                            <p><img class="w-100" src="../{{ item.picture }}" alt=""></p>
+                        </div>
+                        <div>
+                            <p>{{ item.text }}</p>
+                        </div>
+                        <a href="/news/{{ item.id }}" class="btn btn-secondary mb-2">Читать далее</a>
+                    </div>
                 </div>
-                <div>
-                    <p><img src="../{{ item.picture }}" alt=""></p>
-                </div>
-                <div>
-                    <p>{{ item.text }}</p>
-                </div>
-                <a href="/news/{{ item.id }}" class="btn btn-secondary mb-2">Читать</a>
             </div>
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-6 my-4">
+                    <div class="news_block border border-2 border-warning">
+                        <div>
+                            <span class="badge bg-warning text-dark p-3 fs-5 fw-regular">Новое</span>
+                        </div>
+                        <div>
+                            <h2>{{ item.title }}</h2>
+                        </div>
+                        <div>
+                            <p><img class="w-100" src="../{{ item.picture }}" alt=""></p>
+                        </div>
+                        <div>
+                            <p>{{ item.text }}</p>
+                        </div>
+                        <a href="/news/{{ item.id }}" class="btn btn-secondary mb-2">Читать далее</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 col-md-6 my-4">
+                    <div class="news_block  border border-2 border-danger">
+                        <div>
+                            <span class="badge bg-danger text-white p-3 fs-5 fw-regular">Важно</span>
+                        </div>
+                        <div>
+                            <h2>{{ item.title }}</h2>
+                        </div>
+                        <div>
+                            <p><img class="w-100" src="../{{ item.picture }}" alt=""></p>
+                        </div>
+                        <div>
+                            <p>{{ item.text }}</p>
+                        </div>
+                        <a href="/news/{{ item.id }}" class="btn btn-secondary mb-2">Читать далее</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
         </div>
-    {% endfor %}
-            </div>
     </div>
+
+    <div class="pagination">
+        <a href="#" class="prev"><</a>
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#" class="next">></a>
+    </div>
+</div>
 {% endblock %}

@@ -13,6 +13,7 @@
   flex-direction: column;
   gap: 20px
 }
+
 .news_blocks{
     display: flex;
     flex-direction: column;
@@ -28,3 +29,9 @@
 .header_logo h5{
     margin: 0
 }
+
+.footer {
+    background-color: darkseagreen;
+}
+
+

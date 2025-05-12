@@ -30,8 +30,8 @@
                                onchange="updatePublicationStatus({{ news_item.id }}, this.checked)">
                     </td>
                     <td>
-                        <button class="btn btn-primary" onclick="location.href='/news/edit/{{ news_item.id }}'">Редактировать</button>
-                        <button class="btn btn-danger" onclick="location.href='/news/delete/{{ news_item.id }}'">Удалить</button>
+                        <button class="btn btn-primary my-2" onclick="location.href='/news/edit/{{ news_item.id }}'">Редактировать</button>
+                        <button class="btn btn-danger my-2" onclick="location.href='/news/delete/{{ news_item.id }}'">Удалить</button>
                     </td>
                 </tr>
                 {% endfor %}
