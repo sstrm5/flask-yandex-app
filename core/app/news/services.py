@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from core.app.extensions import db
 from core.app.news.models import News
+from core.app.users.models import User
 
 
 class INewsService(ABC):
@@ -11,19 +12,27 @@ class INewsService(ABC):
     @abstractmethod
     def update_status_news(id: int): ...
     @abstractmethod
-    def edit_news_item(id: int, title: str, text: str, is_published: bool): ...
+    def edit_news_item(
+        id: int, title: str, text: str, picture: str, is_published: bool
+    ): ...
     @abstractmethod
     def get_news_item(id: int): ...
     @abstractmethod
     def delete_news_item(id: int): ...
     @abstractmethod
-    def create_news_item(title: str, text: str, is_published: bool): ...
+    def create_news_item(
+        title: str, text: str, picture: str, author: User, is_published: bool
+    ): ...
 
 
 class NewsService(INewsService):
     def get_published_news():
         news = db.session.query(News).filter(News.is_published == True).all()
         return news
+
+    def get_news_item(id: int):
+        news_item = db.session.query(News).get(id)
+        return news_item
 
     def get_all_news():
         news = db.session.query(News).all()
@@ -38,13 +47,14 @@ class NewsService(INewsService):
     def edit_news_item(
         id: int,
         title: str,
-        # picture: str,
+        picture: str,
         text: str,
         is_published: bool,
     ):
         news_item = db.session.query(News).get(id)
         news_item.title = title
         news_item.text = text
+        news_item.picture = picture
         news_item.is_published = is_published
         db.session.add(news_item)
         db.session.commit()
@@ -59,13 +69,16 @@ class NewsService(INewsService):
 
     def create_news_item(
         title: str,
-        # picture: str,
+        picture: str,
+        author: User,
         text: str,
         is_published: bool,
     ):
         news_item = News()
         news_item.title = title
         news_item.text = text
+        news_item.picture = picture
+        news_item.author = author
         news_item.is_published = is_published
         db.session.add(news_item)
         db.session.commit()

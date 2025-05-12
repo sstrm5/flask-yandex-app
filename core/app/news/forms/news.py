@@ -5,6 +5,7 @@ from wtforms import (
     TextAreaField,
     SubmitField,
     BooleanField,
+    FileField,
 )
 from wtforms.validators import DataRequired, Length
 
@@ -14,9 +15,8 @@ class EditNews(FlaskForm):
         "Заголовок",
         validators=[DataRequired(), Length(max=100)],
     )
-    picture = StringField(
-        "Ссылка на изображение",
-        validators=[Length(max=200)],
+    picture = FileField(
+        "Изображение",
     )
     text = TextAreaField(
         "Текст новости",

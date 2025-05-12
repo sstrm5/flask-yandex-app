@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 
 from core.app.news.services import INewsService
+from core.app.users.models import User
 
 
 @dataclass
@@ -37,12 +38,12 @@ class EditNewsItemUseCase:
         self,
         id: int,
         title: str,
-        # picture: str,
+        picture: str,
         text: str,
         is_published: bool,
     ):
         self.news_service.edit_news_item(
-            id=id, title=title, text=text, is_published=is_published
+            id=id, title=title, text=text, picture=picture, is_published=is_published
         )
 
     def get_news_item(self, id: int):
@@ -65,12 +66,15 @@ class CreateNewsItemUseCase:
     def execute(
         self,
         title: str,
-        # picture: str,
+        picture: str,
+        author: User,
         text: str,
         is_published: bool,
     ):
         self.news_service.create_news_item(
             title=title,
             text=text,
+            picture=picture,
+            author=author,
             is_published=is_published,
         )

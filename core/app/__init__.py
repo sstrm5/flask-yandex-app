@@ -39,7 +39,7 @@ def create_app():
     init_admin(app)
 
     # Регистрация Blueprint'ов
-    from core.api.routes import api
+    from core.routes.routes import api
 
     app.register_blueprint(api)
 

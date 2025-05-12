@@ -15,11 +15,12 @@
                     <h2>{{ item.title }}</h2>
                 </div>
                 <div>
-                    <p>{{ item.picture }}</p>
+                    <p><img src="../{{ item.picture }}" alt=""></p>
                 </div>
                 <div>
                     <p>{{ item.text }}</p>
                 </div>
+                <a href="/news/{{ item.id }}" class="btn btn-secondary mb-2">Читать</a>
             </div>
         </div>
     {% endfor %}

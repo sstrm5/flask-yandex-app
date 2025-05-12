@@ -23,3 +23,4 @@ class News(db.Model):
         nullable=False,
         default=True,
     )
+    created_at = db.Column(db.DateTime, default=datetime.now)
