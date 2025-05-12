@@ -4,7 +4,6 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from .extensions import db
 import os
-
 from sqlalchemy import text
 
 from core.app.admin import init_admin
