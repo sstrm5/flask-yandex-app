@@ -7,7 +7,7 @@
         
         <h1 class="text-center">{{ news_item.title }}</h1>
         {% if news_item.picture %}
-            <img src="{{ url_for('static', filename=news_item.picture) }}" alt="{{ news_item.title }}" class="news_item.image">
+            <img src="../{{ news_item.picture }}" alt="{{ news_item.title }}" class="news_item.image">
         {% endif %}
         <p class="news_item-text">{{ news_item.text }}</p>
         <p class="news_item-author"><span class="fw-bold">Автор:</span> {{ news_item.author.name }}</p>

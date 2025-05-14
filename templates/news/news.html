@@ -4,9 +4,21 @@
 <div class="container">
 
     {% if current_user.is_authenticated %}
-        {% if current_user.role.value == "moderator" or current_user.role.value == "admin"%}
-            <a href="/news/edit" class="btn btn-primary mb-3">Редактировать</a>
-        {% endif %}
+    {% if current_user.role.value == "moderator" or current_user.role.value == "admin"%}
+    <a href="/news/edit" class="btn btn-primary mb-3">Редактировать</a>
+    {% endif %}
+    <h2 class="text-center">Новости</h2>
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+            Сортировка новостей
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" href="/news?sorting=new">Новые</a></li>
+            <li><a class="dropdown-item" href="/news?sorting=default">По умолчанию</a></li>
+        </ul>
+    </div>
+
     {% endif %}
     <div class="">
         <div class="row d-flex justify-content-center">
