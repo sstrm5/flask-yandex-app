@@ -2,7 +2,8 @@
     padding: 50px;
     padding-left:140px;
     padding-right:140px;
-    background-color: darkseagreen
+    background-color: darkseagreen;
+    color: rgba(var(--bs-white-rgb))
 }
 .carousel-control-prev, .carousel-control-next{
     opacity: 10
