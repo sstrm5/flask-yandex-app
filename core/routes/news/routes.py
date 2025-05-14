@@ -26,10 +26,8 @@ def get_news():
     use_case = GetNewsUseCase(
         news_service=NewsService,
     )
-    news, news_quantity = use_case.execute(
-        page=page, news_type=news_type, sorting=sorting
-    )
-    return render_template("news/news.html", news=news, news_count=news_quantity)
+    news = use_case.execute(page=page, news_type=news_type, sorting=sorting)
+    return render_template("news/news.html", news=news, page=page)
 
 
 @news_bp.route("/news/<int:id>", methods=["GET"])
