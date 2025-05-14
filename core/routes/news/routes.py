@@ -20,10 +20,13 @@ news_bp = Blueprint("news", __name__)
 
 @news_bp.route("/news/", methods=["GET"])
 def get_news():
+    page = request.args.get("page")
+    news_type = request.args.get("news_type")
+    sorting = request.args.get("sorting")
     use_case = GetNewsUseCase(
         news_service=NewsService,
     )
-    news = use_case.execute()
+    news = use_case.execute(page=page, news_type=news_type, sorting=sorting)
     return render_template("news/news.html", news=news)
 
 

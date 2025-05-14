@@ -8,8 +8,10 @@ from core.app.users.models import User
 class GetNewsUseCase:
     news_service: INewsService
 
-    def execute(self):
-        news = self.news_service.get_published_news()
+    def execute(self, page: str | None, news_type: str | None, sorting: str | None):
+        news = self.news_service.get_published_news(
+            page=page, news_type=news_type, sorting=sorting
+        )
         return news
 
 

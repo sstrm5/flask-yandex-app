@@ -6,7 +6,9 @@ from core.app.users.models import User
 
 class INewsService(ABC):
     @abstractmethod
-    def get_published_news(): ...
+    def get_published_news(
+        page: str | None, news_type: str | None, sorting: str | None
+    ): ...
     @abstractmethod
     def get_all_news(): ...
     @abstractmethod
@@ -26,8 +28,26 @@ class INewsService(ABC):
 
 
 class NewsService(INewsService):
-    def get_published_news():
-        news = db.session.query(News).filter(News.is_published == True).all()
+    SORTING_TYPES = {
+        "new": News.created_at,
+        "default": News.title,
+    }
+
+    def get_published_news(
+        page: str | None, news_type: str | None, sorting: str | None
+    ):
+        page = int(page) if page else 1
+        sorting = sorting if sorting else "default"
+
+        query = db.session.query(News).filter(News.is_published == True)
+
+        if news_type:
+            query = query.filter(News.news_type == news_type)
+
+        news = query.order_by(NewsService.SORTING_TYPES[sorting]).all()[
+            (page - 1) * 4 : page * 4
+        ]
+
         return news
 
     def get_news_item(id: int):
