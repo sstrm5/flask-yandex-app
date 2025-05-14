@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+
+from sqlalchemy import desc
 from core.app.extensions import db
 from core.app.news.models import News
 from core.app.users.models import User
@@ -44,11 +46,11 @@ class NewsService(INewsService):
         if news_type:
             query = query.filter(News.news_type == news_type)
 
-        news = query.order_by(NewsService.SORTING_TYPES[sorting]).all()[
-            (page - 1) * 4 : page * 4
-        ]
+        news = query.order_by(desc(NewsService.SORTING_TYPES[sorting])).all()
 
-        return news
+        news_quantity = len(news)
+
+        return news[(page - 1) * 4 : page * 4], news_quantity
 
     def get_news_item(id: int):
         news_item = db.session.query(News).get(id)

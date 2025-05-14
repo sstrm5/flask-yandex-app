@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import math
 
 from core.app.news.services import INewsService
 from core.app.users.models import User
@@ -9,10 +10,11 @@ class GetNewsUseCase:
     news_service: INewsService
 
     def execute(self, page: str | None, news_type: str | None, sorting: str | None):
-        news = self.news_service.get_published_news(
+        news, news_quantity = self.news_service.get_published_news(
             page=page, news_type=news_type, sorting=sorting
         )
-        return news
+        news_quantity = math.ceil(news_quantity / 5)
+        return news, news_quantity
 
 
 @dataclass
