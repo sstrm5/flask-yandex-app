@@ -53,12 +53,63 @@
     </div>
 
     <div class="pagination">
-        <a href="#" class="prev">< </a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#" class="next">></a>
+        <a onclick="handleClickPrev()" class="prev"><</a>
+        <a href="" class="pag active">1</a>
+        <a class="pag">2</a>
+        <a class="pag">3</a>
+        <a class="pag">4</a>
+        <a class="pag">5</a>
+        <a onclick="handleClickNext()" href="" class="next">></a>
     </div>
+
+    <script>
+
+        const host = "http://127.0.0.1:9000";
+
+        if ({{page}} == 1) {
+                let element = document.querySelectorAll('.prev')[0];
+                element.remove()
+            }
+
+        if ({{page}} == {{page_quantity}}) {
+                let element = document.querySelectorAll('.next')[0];
+                element.remove()
+            }
+        
+        function draw(page, total) {
+            let elements = document.querySelectorAll('.pag');
+            let i = 0;
+            for (let elem of elements) {
+                if (page + i <= total) {
+
+                    elem.innerHTML = page + i;
+                    elem.href = `/products/?page=${page + i}`
+                    i++;
+                }
+                else elem.remove()
+            }
+        }
+
+        draw({{page}}, {{page_quantity}});
+
+        function handleClickPrev() {
+            let page = {{page}};
+            if (page >= 2) {
+                window.location.href = host + `/products/?page=${page - 1}`;
+            }
+        }
+
+
+        function handleClickNext() {
+            let page = {{page}};
+            if (page < {{page_quantity}}) {
+                window.location.href = host + `/products/?page=${page + 1}`;
+            }
+            
+        }
+
+        
+
+    </script>
 </div>
 {% endblock %}

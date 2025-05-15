@@ -17,8 +17,19 @@
                     Сортировка новостей
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                    <li><a class="dropdown-item" href="?sorting=new">Новые</a></li>
-                    <li><a class="dropdown-item" href="?sorting=default">По умолчанию</a></li>
+                    {% if sorting == 'new' %}
+                        <li><a class="dropdown-item active" href="?sorting=new">Новые</a></li>
+                        <li><a class="dropdown-item" href="?sorting=default">По умолчанию</a></li>
+                    {% endif %}
+                    {% if sorting == 'default' %}
+                        <li><a class="dropdown-item" href="?sorting=new">Новые</a></li>
+                        <li><a class="dropdown-item active" href="?sorting=default">По умолчанию</a></li>
+                    {% endif %}
+                    {% if not sorting == 'default' and not sorting == 'new' %}
+                        <li><a class="dropdown-item" href="?sorting=new">Новые</a></li>
+                        <li><a class="dropdown-item" href="?sorting=default">По умолчанию</a></li>
+                    {% endif %}
+                        
                 </ul>
             </div>
             <div class="col-4 d-flex justify-content-end">
@@ -28,9 +39,30 @@
                         Фильтр
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item" href="?news_type=regular">Обычные</a></li>
-                        <li><a class="dropdown-item" href="?news_type=new">Новое</a></li>
-                        <li><a class="dropdown-item" href="?news_type=important">Важное</a></li>
+                        {% if news_type ==  'regular'%}
+                            <li><a class="dropdown-item active" href="?news_type=regular">Обычные</a></li>
+                            <li><a class="dropdown-item" href="?news_type=new">Новое</a></li>
+                            <li><a class="dropdown-item" href="?news_type=important">Важное</a></li>
+                        {% endif %}
+
+                        {% if news_type ==  'new'%}
+                            <li><a class="dropdown-item" href="?news_type=regular">Обычные</a></li>
+                            <li><a class="dropdown-item active" href="?news_type=new">Новое</a></li>
+                            <li><a class="dropdown-item" href="?news_type=important">Важное</a></li>
+                        {% endif %}
+
+                        {% if news_type ==  'important'%}
+                            <li><a class="dropdown-item" href="?news_type=regular">Обычные</a></li>
+                            <li><a class="dropdown-item" href="?news_type=new">Новое</a></li>
+                            <li><a class="dropdown-item active" href="?news_type=important">Важное</a></li>
+                        {% endif %}
+                        
+                        {% if not news_type == 'regular' and not news_type == 'new' and not news_type == 'important'%}
+                            <li><a class="dropdown-item" href="?news_type=regular">Обычные</a></li>
+                            <li><a class="dropdown-item" href="?news_type=new">Новое</a></li>
+                            <li><a class="dropdown-item" href="?news_type=important">Важное</a></li>
+                        {% endif %}
+
                     </ul>
                 </div>
               
@@ -163,6 +195,13 @@
             
         }
 
+        console.log({{news_type}});
+        console.log({{sorting}});
+        let sort = {{sorting}};
+        console.log(sort)
+        if (sort == 'new') {
+            alert(true)
+        } 
     </script>
 </div>
 {% endblock %}
