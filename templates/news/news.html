@@ -4,8 +4,9 @@
 <div class="container">
 
     {% if current_user.is_authenticated %}
-    {% if current_user.role.value == "moderator" or current_user.role.value == "admin"%}
-    <a href="/news/edit" class="btn btn-primary mb-3">Редактировать</a>
+        {% if current_user.role.value == "moderator" or current_user.role.value == "admin"%}
+            <a href="/news/edit" class="btn btn-primary mb-3">Редактировать</a>
+        {% endif %}
     {% endif %}
     <h2 class="text-center">Новости</h2>
     <div class="dropdown">
@@ -28,8 +29,8 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="/news?news_type=regular">Обычные</a></li>
-                        <li><a class="dropdown-item" href="/news?news_type=new">Новые</a></li>
-                        <li><a class="dropdown-item" href="/news?news_type=important">Важные</a></li>
+                        <li><a class="dropdown-item" href="/news?news_type=new">Новое</a></li>
+                        <li><a class="dropdown-item" href="/news?news_type=important">Важное</a></li>
                     </ul>
                 </div>
               
@@ -42,7 +43,6 @@
         
     </div>
 
-    {% endif %}
     <div class="">
         <div class="row d-flex justify-content-center">
             {% for item in news %}

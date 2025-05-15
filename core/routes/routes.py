@@ -2,6 +2,7 @@ import pathlib
 from flask import Blueprint, send_from_directory
 from core.routes.users.routes import users_bp
 from core.routes.news.routes import news_bp
+from core.routes.products.routes import products_bp
 
 # Blueprint configuration
 api = Blueprint("api", __name__)
@@ -14,6 +15,7 @@ def handle():
 
 api.register_blueprint(users_bp)
 api.register_blueprint(news_bp)
+api.register_blueprint(products_bp)
 
 
 @api.get("/media/<path:path>")

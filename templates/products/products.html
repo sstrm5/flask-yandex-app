@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+
+    {% if current_user.is_authenticated %}
+        {% if current_user.role.value == "moderator" or current_user.role.value == "admin"%}
+           <a href="/products/edit" class="btn btn-primary mb-3">Редактировать</a>
+        {% endif %}
+    {% endif %}
+    
+    <div class="row">
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ product.picture1 }}" class="card-img-top" alt="{{ product.name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description }}</p>
+                    <p class="card-text"><strong>Цена:</strong> {{ product.price }} руб.</p>
+                    <p class="card-text"><strong>Количество:</strong> {{ product.quantity }}</p>
+                    {% if product.catergory %}
+                    <p class="card-text"><strong>Категория:</strong> {{ product.catergory.value }}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="pagination">
+        <a href="#" class="prev"><</a>
+        <a href="#" class="active">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#" class="next">></a>
+    </div>
+</div>
+{% endblock %}

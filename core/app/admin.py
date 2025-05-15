@@ -4,6 +4,7 @@ from flask_login import current_user
 from flask import redirect, url_for
 from core.app.extensions import db
 from core.app.news.models import News
+from core.app.products.models import Product
 from core.app.users.models import User
 
 
@@ -37,3 +38,4 @@ def init_admin(app):
     )
     admin.add_view(MyModelView(User, db.session))
     admin.add_view(MyModelView(News, db.session))
+    admin.add_view(MyModelView(Product, db.session))
