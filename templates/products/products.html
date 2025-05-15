@@ -17,11 +17,12 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text">{{ product.description }}</p>
-                    <p class="card-text"><strong>Цена:</strong> {{ product.price }} руб.</p>
-                    <p class="card-text"><strong>Количество:</strong> {{ product.quantity }}</p>
-                    {% if product.catergory %}
-                    <p class="card-text"><strong>Категория:</strong> {{ product.catergory.value }}</p>
-                    {% endif %}
+                    <p class="card-text"><strong></strong> {{ product.price }} руб.</p>
+                    <!-- <p class="card-text"><strong>Количество:</strong> {{ product.quantity }}</p> -->
+                    <!-- {% if product.catergory %} -->
+                    <!-- <p class="card-text"><strong>Категория:</strong> {{ product.catergory.value }}</p> -->
+                    <!-- {% endif %} -->
+                    <a href="/products/add/{{ product.id }}" class="btn btn-success mb-3">Добавить в корзину</a>
                 </div>
             </div>
         </div>
