@@ -8,12 +8,34 @@
            <a href="/admin/product/" class="btn btn-primary mb-3">Редактировать</a>
         {% endif %}
     {% endif %}
-    
+
     <div class="row">
         {% for product in products %}
         <div class="col-md-4 mb-4">
             <div class="card">
-                <img src="{{ product.picture1 }}" class="card-img-top" alt="{{ product.name }}">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img style="width: 400px; height: 300px;" src="{{ product.picture1 }}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img style="width: 400px; height: 300px;" src="{{ product.picture2 }}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img style="width: 400px; height: 300px;" src="{{ product.picture3 }}" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text">{{ product.description }}</p>
@@ -24,6 +46,7 @@
                     <!-- {% endif %} -->
                     <a href="/products/{{ product.id }}" class="btn btn-success mb-3">Посмотреть</a>
                     <a href="/products/add/{{ product.id }}" class="btn btn-success mb-3">Добавить в корзину</a>
+                    <a href="/products/add/{{ product.id }}" class="btn btn-info mb-3">Просмотреть</a>
                 </div>
             </div>
         </div>
@@ -31,12 +54,12 @@
     </div>
 
     <div class="pagination">
-        <a href="#" class="prev"><</a>
-        <a href="#" class="active">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#" class="next">></a>
+        <a href="#" class="prev">< </a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#" class="next">></a>
     </div>
 </div>
 {% endblock %}
