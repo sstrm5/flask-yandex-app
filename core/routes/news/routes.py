@@ -26,11 +26,17 @@ def get_news():
     use_case = GetNewsUseCase(
         news_service=NewsService,
     )
+    page = abs(int(page)) if page else 1
     news, page_quantity = use_case.execute(
         page=page, news_type=news_type, sorting=sorting
     )
     return render_template(
-        "news/news.html", news=news, page=page, page_quantity=page_quantity
+        "news/news.html",
+        news=news,
+        page=page,
+        page_quantity=page_quantity,
+        news_type=news_type,
+        sorting=sorting,
     )
 
 

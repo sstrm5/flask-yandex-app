@@ -55,3 +55,6 @@ class ProductService(IProductService):
         products_quantity = len(product_list)
 
         return product_list[(page - 1) * 4 : page * 4], products_quantity
+
+    def get_product_item(id):
+        return db.session.query(Product).get(id)

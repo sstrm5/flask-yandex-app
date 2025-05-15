@@ -5,7 +5,7 @@
 
     {% if current_user.is_authenticated %}
         {% if current_user.role.value == "moderator" or current_user.role.value == "admin"%}
-           <a href="/products/edit" class="btn btn-primary mb-3">Редактировать</a>
+           <a href="/admin/product/" class="btn btn-primary mb-3">Редактировать</a>
         {% endif %}
     {% endif %}
     
@@ -22,6 +22,7 @@
                     <!-- {% if product.catergory %} -->
                     <!-- <p class="card-text"><strong>Категория:</strong> {{ product.catergory.value }}</p> -->
                     <!-- {% endif %} -->
+                    <a href="/products/{{ product.id }}" class="btn btn-success mb-3">Посмотреть</a>
                     <a href="/products/add/{{ product.id }}" class="btn btn-success mb-3">Добавить в корзину</a>
                 </div>
             </div>

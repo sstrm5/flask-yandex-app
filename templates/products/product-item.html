@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% if product.picture1 %}
+                    <div class="carousel-item active">
+                        <img src="{{ product.picture1 }}" class="d-block w-100" alt="Product Image 1">
+                    </div>
+                    {% endif %}
+                    {% if product.picture2 %}
+                    <div class="carousel-item">
+                        <img src="{{ product.picture2 }}" class="d-block w-100" alt="Product Image 2">
+                    </div>
+                    {% endif %}
+                    {% if product.picture3 %}
+                    <div class="carousel-item">
+                        <img src="{{ product.picture3 }}" class="d-block w-100" alt="Product Image 3">
+                    </div>
+                    {% endif %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h1>{{ product.name }}</h1>
+            <p class="text-muted">Категория: {{ product.catergory.value }}</p>
+            <p>{{ product.description }}</p>
+            <h3 class="text-success">Цена: {{ product.price }} ₽</h3>
+            <p>В наличии: {{ product.quantity }}</p>
+            <form method="post">
+                <button type="submit" class="btn btn-success">Добавить в корзину</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

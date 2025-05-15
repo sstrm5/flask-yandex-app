@@ -38,7 +38,6 @@ class NewsService(INewsService):
     def get_published_news(
         page: str | None, news_type: str | None, sorting: str | None
     ):
-        page = int(page) if page else 1
         sorting = sorting if sorting else "default"
 
         query = db.session.query(News).filter(News.is_published == True)
