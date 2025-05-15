@@ -49,7 +49,7 @@ class NewsService(INewsService):
 
         news_quantity = len(news)
 
-        return news[(page - 1) * 4 : page * 4], news_quantity
+        return news[(page - 1) * 3 : page * 3], news_quantity
 
     def get_news_item(id: int):
         news_item = db.session.query(News).get(id)

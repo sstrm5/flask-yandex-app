@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from abc import ABC, abstractmethod
+import math
 from core.app.extensions import db
 from core.app.products.models import Product
 
@@ -53,8 +54,9 @@ class ProductService(IProductService):
         product_list = query.all()
 
         products_quantity = len(product_list)
+        page_quantity = math.ceil(products_quantity / 3)
 
-        return product_list[(page - 1) * 4 : page * 4], products_quantity
+        return product_list[(page - 1) * 4 : page * 4], page_quantity
 
     def get_product_item(id):
         return db.session.query(Product).get(id)

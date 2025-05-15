@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Корзина покупок</h1>
+
+{% if cart.lines %}
+<table>
+    <thead>
+        <tr>
+            <th>Товар</th>
+            <th>Количество</th>
+            <th>Цена</th>
+            <th>Сумма</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for line in cart.lines %}
+        <tr>
+            <td>{{ line.product.name }}</td>
+            <td>{{ line.quantity }}</td>
+            <td>{{ line.product.price }} ₽</td>
+            <td>{{ line.quantity * line.product.price }} ₽</td>
+            <td>
+                <form method="POST" action="/cart/remove/{{ line.product.id }}">
+                    <input type="hidden" name="action" value="decrease">
+                    <button type="submit">-</button>
+                </form>
+                <form method="POST" action="/cart/add/{{ line.product.id }}">
+                    <input type="hidden" name="action" value="increase">
+                    <button type="submit">+</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<p><strong>Итого:</strong> {{ cart_total }} ₽</p>
+{% else %}
+<p>Ваша корзина пуста.</p>
+{% endif %}
+
+<a href="/products">Продолжить покупки</a>
+{% endblock %}

@@ -43,6 +43,7 @@ class User(db.Model, UserMixin):
         sqlalchemy.DateTime,
         default=datetime.datetime.now,
     )
+    cart = db.relationship("Cart", back_populates="user", uselist=False)
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)

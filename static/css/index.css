@@ -8,3 +8,8 @@
 .carousel-control-prev, .carousel-control-next{
     opacity: 10
 }
+
+.cart-image {
+    max-width: 20px;
+    max-height: 20px;
+}

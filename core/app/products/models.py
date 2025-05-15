@@ -14,7 +14,7 @@ class ProductCategory(enum.Enum):
 
 
 class Product(db.Model):
-    __tablename__ = "product"
+    __tablename__ = "products"
 
     id = db.Column(
         db.Integer,

@@ -39,11 +39,12 @@
                 </ul>
                 <ul class="navbar-nav mb-2 mb-lg-0">
                     {% if current_user.is_authenticated %}
-                    {% if current_user.role.value == "admin" %}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/admin">АДМИН-ПАНЕЛЬ</a>
-                    </li>
-                    {% endif %}
+                    <a class="nav-link active" aria-current="page" href="/cart"><img src="../static/img/cart.svg" alt="Корзина" class="cart-image"></a>
+                        {% if current_user.role.value == "admin" %}
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="/admin">АДМИН-ПАНЕЛЬ</a>
+                            </li>
+                        {% endif %}
                     <a class="navbar-brand" href="/logout">{{ current_user.name }}</a>
                     {% else %}
                     <li class="nav-item">

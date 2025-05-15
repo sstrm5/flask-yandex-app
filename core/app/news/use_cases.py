@@ -13,7 +13,7 @@ class GetNewsUseCase:
         news, news_quantity = self.news_service.get_published_news(
             page=page, news_type=news_type, sorting=sorting
         )
-        page_quantity = math.ceil(news_quantity / 5)
+        page_quantity = math.ceil(news_quantity / 4)
         return news, page_quantity
 
 

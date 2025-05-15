@@ -13,7 +13,7 @@
         {% for product in products %}
         <div class="col-md-4 mb-4">
             <div class="card">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div id="{{ product.id }}" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img style="width: 400px; height: 300px;" src="{{ product.picture1 }}" class="d-block w-100" alt="...">
@@ -25,12 +25,12 @@
                             <img style="width: 400px; height: 300px;" src="{{ product.picture3 }}" class="d-block w-100" alt="...">
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                    <button class="carousel-control-prev" type="button" data-bs-target="#{{ product.id }}"
                         data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                    <button class="carousel-control-next" type="button" data-bs-target="#{{ product.id }}"
                         data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
@@ -45,8 +45,7 @@
                     <!-- <p class="card-text"><strong>Категория:</strong> {{ product.catergory.value }}</p> -->
                     <!-- {% endif %} -->
                     <a href="/products/{{ product.id }}" class="btn btn-success mb-3">Посмотреть</a>
-                    <a href="/products/add/{{ product.id }}" class="btn btn-success mb-3">Добавить в корзину</a>
-                    <a href="/products/add/{{ product.id }}" class="btn btn-info mb-3">Просмотреть</a>
+                    <a href="/cart/add/{{ product.id }}" class="btn btn-success mb-3">Добавить в корзину</a>
                 </div>
             </div>
         </div>
